@@ -1,0 +1,185 @@
+.Container{
+  position: absolute;
+  right: 22%;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  background-image: linear-gradient(#94F7E5,#6CCF9D,#5BBE7D,#56989A);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);  
+  border-radius: 10px; 
+}
+.LoginForm .FormGroup {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.Label {
+  position: absolute;
+  left: 0rem;
+  top: 0.75rem;
+  transition: transform 0.3s, font-size 0.3s;
+  display: block;
+  font-weight: 500;
+  padding-left: 4%;
+  
+}
+.FormInput:focus + .Label, .FormInput:valid + .Label {
+  transform: translateY(-2rem);
+  padding-left: 0%;
+  font-size: 0.8rem;
+}
+/* .Border-me{
+  position: relative;
+  justify-content: right;
+  k co gì
+  background-image: linear-gradient(to top, #94f7e5, #85edd3, #77e2c1, #6cd8ad, #63cd99, #5bc595, #52be90, #4ab68c, #44af94, #45a899, #4ca09b, #56989a);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  background-size: 70% 100%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);  
+  border-radius: 10px; 
+  } */
+
+.Border-con{
+  display: flex;
+  background-color: #94F7B2;
+  /* background-image: linear-gradient(to top, #94f7e5, #85edd3, #77e2c1, #6cd8ad, #63cd99, #5bc595, #52be90, #4ab68c, #44af94, #45a899, #4ca09b, #56989a); */
+  width: 100%;
+  max-height: auto;
+  max-width: 100%;
+  padding:3%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);  
+  border-radius: 10px; 
+  z-index: 1;
+}
+.Border{
+  display: flex;
+  justify-content: right;
+  position: absolute;
+  right: -21.5%;
+  background-color: white;
+  width: 75%;
+  height: 85%;
+  max-height: 90%;
+  max-width: 100%;
+  padding:3% 5%;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.1);  
+  border-radius: 10px; 
+}
+.FormGroup{
+  padding-bottom: 5%;
+}
+.LoginBorder{
+    background-color: white;
+    width: 90%;
+    max-height: 100%;
+    max-width: 90%;
+    max-width: 450px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);  
+    border-radius: 10px; 
+}
+.Appname{
+  width: 50%;
+  text-align: right;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+}
+.LoginForm{
+    width: 100%;
+    margin-bottom: 25px;
+}
+.FormHeader{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.LoginForm .FormInput {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    line-height: 2;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+.FormInput:hover,
+.FormInput:focus {
+border-color: #ffffff;
+outline: 0;
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.FormError {
+    color: #dc3545;
+    font-size: 12px;
+  }
+  
+  .LoginButton{
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: #007bff;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .LoginButton:hover {
+    color: #fff;
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  .CreateButton{
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    /* color: #212020; */
+    background-image: linear-gradient(to top,#94F7E5,#6CCF9D,#5BBE7D,#56989A);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .CreateButton:hover {
+    color: #fff;
+    background-image: linear-gradient(to top,#94F7E5,#265f55);
+
+    border-color: #68dd7b;
+  }
+  a{
+    font: weight 20px ;
+    color: #161716;
+    text-decoration: none;
+  }
+  .ErrorMessage {
+    color: red;
+    margin-top: 5px;
+  }

@@ -1,0 +1,162 @@
+@media (max-width: 768px) {
+  .container {
+      width: 100%;
+      margin: 0 auto;
+  }
+}
+
+.info-container{
+    width: 100%;
+    height: 100%;
+}
+  .info-container .FormGroup{
+      display: flex;
+      float: left;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      border: 1px solid gray;
+      border-radius: 5px;
+      margin-bottom: 15px;
+  }
+
+  .group-furi{
+      position: relative;
+      width: 100%;
+      height: 10%;
+  }
+  .FormLabel{
+      position: relative;
+      top: 30%;
+      margin-left: 5%;
+      
+  }
+  .info-container .FormInput {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .Form-input-furi {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #495057;
+    background-color: transparent;
+    background-clip: padding-box;
+    border-top: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .Form-input-furi:hover ,.CommonInput:hover,
+  .Form-input-furi:focus ,.CommonInput:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  .info-container .FormInput::placeholder{
+      color: black;
+  }
+
+.BirthdayGroup ,.GenderGroup{
+    display: flex;
+    width:100%;
+    height: 100%;
+    border-right: 1px solid gray;
+    float: left;
+    justify-content: space-between;
+    align-items: center;
+}
+
+  .CommonInput{
+      position: relative;
+      width: 10%;
+      padding: 5px 10px 5px 10px;
+      margin: 10px 15px 10px 15px;
+      font-size: 15px;
+      background-color: transparent;
+      background-clip: padding-box;
+      border-radius: 5px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .GenderInput {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      background-color: white;
+      transition: border-color 0.15s ease-in-out;
+      cursor: pointer;
+    }
+
+  .GenderInput:checked::before,.address-group input[type='text']::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .GenderInput:hover ,.address-group input[type='text']:hover{
+    border-color: #80bdff;
+  }
+  
+  .GenderInput:focus ,.address-group input[type='text']:focus{
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  /* tel */
+.form-group{
+  width: 100%;
+  margin-bottom: 10px;
+  display: flex;
+  float: left;
+}
+.form-group span:hover{
+  cursor: pointer;
+}
+.contact-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.address-container{
+  width: 100%;
+  height: 100%;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.address-container .address-group{
+  width: 100%;
+  height: 100%;
+  padding: 1%;
+  display:flex;
+  float: left;
+  border-top: 1px solid gray;
+}
+.address-group span{
+  width: 10%;
+} 
+.address-group input[type='text'] {
+  width: 3%;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: transparent;
+  background-clip: padding-box;
+  border-radius: 3px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}

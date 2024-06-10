@@ -1,0 +1,62 @@
+.GenderContainer{
+  width: 100%;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #fff;
+}
+.Row{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+.FormLabel{
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+/* GenderTheme.css */
+.GenderOption {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .GenderOption label{
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+  .GenderInput {
+    top:10px;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    background-color: white;
+    position: relative;
+    transition: border-color 0.15s ease-in-out;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+
+  .GenderInput:checked::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .GenderInput:hover {
+    border-color: #80bdff;
+  }
+  
+  .GenderInput:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  

@@ -1,0 +1,48 @@
+.logout-container{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #ccc;
+}
+.header{
+    position:relative;
+    width: 100%;
+    height: 13vh;
+    padding:0% 1.2% 0.3% 0%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content:end;
+    align-items: end;
+}
+.logout-container .body{
+    position:relative;
+    width: 100%;
+    height: 87vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.card{
+    width: 30vw;
+    height: 16vw;
+    padding: 10px;
+    margin-bottom: 25px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.child-card{
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+.text-style{
+    border-bottom: 1px solid gray;
+}
+.text-style a{
+    color: black;
+    font-size: 15px;
+}
