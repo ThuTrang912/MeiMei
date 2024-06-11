@@ -1,0 +1,50 @@
+.Header{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 90px;
+    padding-left: 15px;   
+}
+.header-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-text{
+    float: left;
+    font-size: 2.8125rem;
+    padding-left: 0.625rem;
+    font-weight: bold;
+    color: white;
+}
+.grid-right{
+    padding: 0.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+.header-icon{
+    position:relative;
+    margin-right: 15px;
+    width: 2.1875rem;
+    height: 2.1875rem;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-icon img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+.header-icon:hover{
+    box-shadow: 0 0 0 5px #85E2A5;
+    border-radius: 50%;
+}

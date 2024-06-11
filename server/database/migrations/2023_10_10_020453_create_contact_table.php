@@ -16,7 +16,13 @@ class CreateContactTable extends Migration
         Schema::create('contact', function (Blueprint $table) {
             $table->string('id_card');
             $table->string('contact_id');
-            $table->timestamps();
+            $table->boolean('like')->default(false); //0
+            $table->boolean('notification')->default(false); //0
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->softDeletes();
+            // Foreign key
+            $table->foreign('id_card')->references('id_card')->on('user');
         });
     }
 

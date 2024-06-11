@@ -1,0 +1,15 @@
+.SocialMedia-container{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.SocialMedia-section{
+    display: flex;
+    background-color: antiquewhite;
+    margin: auto;
+}
+.icons-container{
+    height: 30px;
+    display: flex;
+}

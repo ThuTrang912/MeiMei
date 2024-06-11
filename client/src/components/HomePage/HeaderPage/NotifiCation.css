@@ -1,0 +1,64 @@
+/* NotifiCation.css */
+.notification-container {
+    position: absolute;
+    top: 90%;
+    right: 0;
+    min-width: 35%;
+    padding: 10px 15px 10px 15px;
+    margin-right: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: -2px 2px 5px #61C483; 
+    z-index: 1;
+  }
+
+.notification-grid{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.notification-text{
+    flex: 70;
+    font-size: 25px;
+    font-weight: bold;
+    color: #273526;
+    cursor: pointer;
+}
+.notification-grid button{
+    position: absolute;
+    top: 10%;
+    left: 90%;
+    cursor: pointer;
+}
+.formattedDate{
+    font-size: 14px;
+    color: gray;
+}
+.notification-container li{
+    list-style: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.notification-container li:hover{
+    background-color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    border-radius: 10px;
+}
+.notification-image {
+    width: 45px;
+    height: 45px;
+    margin-right: 0.625rem;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.notification-image img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}

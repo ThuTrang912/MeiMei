@@ -1,0 +1,67 @@
+/* .search-container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+} */
+.SearchContainer .FormInput {
+    /* width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: white; */
+    background-image: linear-gradient(to left, #13C281, #519A98);
+    /* background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 15px 0 0 15px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
+}
+
+.SearchContainer .FormInput:hover,
+.SearchContainer .FormInput:focus {
+    background-color: #80bdff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* .search-container input::placeholder{
+    color: white;
+}
+.search-container .FormButton {
+flex: 10;
+display: block;
+width: 100%;
+padding: 0.5rem;
+font-size: 1rem;
+font-weight: 400;
+white-space: nowrap;
+cursor: pointer;
+border: 1px solid transparent;
+border-radius: 0 15px 15px 0;
+color: #fff;
+background-image: linear-gradient(to left,#13C281,#519A98);
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.FormButton:hover {
+/* color: #fff; */
+/* background-color: #80bdff;
+border-color: #80bdff;
+box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.SearchIcon{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.SearchIcon img{
+    position: relative;
+    width: 20px;
+    height:20px;
+    overflow: hidden;
+    vertical-align: middle;
+} */

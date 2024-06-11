@@ -10,10 +10,13 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
-.FormLabel{
+.GenderLabel{
     display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #5BBE7D;
+    font-size: small;
+    margin-left: 8px;
 }
 /* GenderTheme.css */
 .GenderOption {
@@ -21,27 +24,26 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 6px;
   }
   
   .GenderOption label{
     display: flex;
     align-items: center;
-    margin-left: 5px;
+    margin-left: 10px;
     font-size: 14px;
   }
   .GenderInput {
     top:10px;
     appearance: none;
-    width: 16px;
-    height: 16px;
+    /* width: 16px;
+    height: 16px; */
     border: 2px solid #ccc;
     border-radius: 50%;
     background-color: white;
-    position: relative;
     transition: border-color 0.15s ease-in-out;
     cursor: pointer;
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
 
   .GenderInput:checked::before {
@@ -52,11 +54,13 @@
     border-radius: 50%;
   }
   .GenderInput:hover {
-    border-color: #80bdff;
+    border-color: #56989A;
+    background-color: #5BBE7D;
   }
   
   .GenderInput:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border-color: #56989A;
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 123, 0.25);
+    background-color: #5BBE7D;
   }
   

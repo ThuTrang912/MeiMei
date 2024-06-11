@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    //use SoftDeletes; // 論理削除の場合
+    use SoftDeletes; // 論理削除の場合
 
 
     /**
@@ -23,14 +24,25 @@ class User extends Authenticatable
      */
 
     protected $table = 'user';
-    // protected $primaryKey = 'id_card';
+    protected $primaryKey = 'id_card';
+    //khai báo các cột có thể đổi được dữ liệu
     protected $fillable = [
         'id_card',
         'user_name',
+        'furigana',
         'email',
         'password',
         'gender',
-        'birthday'
+        'birthday',
+        'tel',
+        'post_code',
+        'address',
+        'img_url',
+        'instagram',
+        'x',
+        'description',
+        'group_id',
+        'registration_allowed',
     ];
 
     /**

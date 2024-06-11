@@ -1,0 +1,94 @@
+.manageAccount-container{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.manageAccount-card{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    margin-bottom: 50px;
+    background-color: white;
+    box-shadow: 0 2px 3px #85e2a5;
+    border-radius: 15px;
+    display: flex;
+}
+.flex-left{
+    float: left;
+    flex: 0 26%;
+}
+.manageAccount-section-text{
+    width: 100%;
+}
+.vertical-nav{
+    box-sizing: border-box;
+    position: absolute;
+    top: 1%;
+    margin-right: 75%;
+    padding: 10px;
+    width: 15%;
+    height: 90%;
+    margin-left: 50px;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 1;
+}
+.vertical-nav-inline{
+    height: 94%;
+    padding: 15px;
+    background-color: #85e2a5;
+    box-shadow: -2px 2px 5px #61C483;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.manageAccount-section{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.manageAccount-section img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+.manageAccount-button button:focus,
+.manageAccount-button button:hover,
+.manageAccount-button button:active,
+.manageAccount-section:active {
+    box-shadow: 0 0 0 5px rgba(10, 210, 97, 0.25);
+}
+.manageAccount-button{
+    position: absolute;
+    top: 82%;
+    width: 12%;
+    height: 10%;
+}
+.manageAccount-button button{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: #85e2a5;
+    border: 6px solid #5fc281;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
