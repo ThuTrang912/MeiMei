@@ -17,7 +17,7 @@ const Header = () => {
     const fetchData = async () => {
         try {
             const http = axios.create({
-                baseURL: `${API_BASE_URL}`,
+                baseURL: `http://${API_BASE_URL}:8000`,
                 headers: {
                     "X-Requested-with": "XMLHttpRequest",
                 },
@@ -47,7 +47,7 @@ const Header = () => {
     const fetchData = async () => {
             try {
                 const http = axios.create({
-                    baseURL: `${API_BASE_URL}`,
+                    baseURL: `http://${API_BASE_URL}:8000`,
                     headers: {
                         "X-Requested-with": "XMLHttpRequest",
                     },

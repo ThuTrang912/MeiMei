@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import API_BASE_URL from '../../apiConfig';
 
-const InUseStatusPage = () => {
+const CardStatusOverviewPage = () => {
     const [cardStatusList, setCardStatusList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const cardsPerPage = 10; // Number of items to display per page
@@ -11,10 +11,8 @@ const InUseStatusPage = () => {
     useEffect(() => {
         const fetchCardStatus = async () => {
             try {
-                const response = await axios.get(`${API_BASE_URL}/api/manager/status`);
-                // Filter out cards with status "false" (使用中) and update the state
-                const inUseCards = response.data.filter(item => item.status === '使用中');
-                setCardStatusList(inUseCards);
+                const response = await axios.get(`http://${API_BASE_URL}:8000/api/manager/status`);
+                setCardStatusList(response.data);
             } catch (error) {
                 console.error('Error fetching card status:', error);
             }
@@ -65,4 +63,4 @@ const InUseStatusPage = () => {
     );
 };
 
-export default InUseStatusPage;
+export default CardStatusOverviewPage;

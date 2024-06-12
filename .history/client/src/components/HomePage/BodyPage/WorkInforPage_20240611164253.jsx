@@ -18,7 +18,7 @@ const WorkInforPage = () => {
   };
 
   const http = axios.create({
-    baseURL: `${API_BASE_URL}`,
+    baseURL: `http://${API_BASE_URL}:8000`,
     headers: {
       "X-Requested-with": "XMLHttpRequest",
     },
@@ -30,7 +30,7 @@ const WorkInforPage = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/company/${idcard}`)
+    fetch(`http://${API_BASE_URL}:8000/api/company/${idcard}`)
       .then((response) => response.json())
       .then((apiData) => {
         setData(apiData);
@@ -127,7 +127,7 @@ const WorkInforPage = () => {
     e.preventDefault();
     try {
       const checkIdCardExistence = await http.get(
-        `${API_BASE_URL}/api/company/${idcard}`
+        `http://${API_BASE_URL}:8000/api/company/${idcard}`
       );
       console.log(checkIdCardExistence);
       if (checkIdCardExistence.data.id_card) {
@@ -136,7 +136,7 @@ const WorkInforPage = () => {
         const companyId = new FormData();
         companyId.append("id_card", idcard);
         const addCompany = await http.post(
-          `${API_BASE_URL}/api/company`,
+          `http://${API_BASE_URL}:8000/api/company`,
           companyId
         );
         console.log("Added Company Id Successful");
@@ -161,11 +161,11 @@ const WorkInforPage = () => {
       const csrf = await http.get("/sanctum/csrf-cookie");
       // });
       const update = await http.post(
-        `${API_BASE_URL}/api/company/${idcard}`,
+        `http://${API_BASE_URL}:8000/api/company/${idcard}`,
         formData
       );
       const company = await http.get(
-        `${API_BASE_URL}/api/company/${idcard}`
+        `http://${API_BASE_URL}:8000/api/company/${idcard}`
       );
       // const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       // console.log(response)

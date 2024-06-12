@@ -10,7 +10,7 @@ const ShowMenu = () => {
     const id_card = userData.data.id_card;
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch(`${API_BASE_URL}/api/user/${id_card}`)
+        fetch(`http://${API_BASE_URL}:8000/api/user/${id_card}`)
             .then((response) => response.json())
             .then((apiData) => {
                 setData(apiData);
@@ -57,7 +57,7 @@ const ShowMenu = () => {
     }, [showMenu]);
 
     let placeHolderImg = "";
-    const imgPath = `${API_BASE_URL}${data.img_url}`;
+    const imgPath = `http://${API_BASE_URL}:8000${data.img_url}`;
     // console.log(imgPath)
     if (data.user_name) {
         const nameSplit = data.user_name.split(" ");
@@ -74,7 +74,7 @@ const ShowMenu = () => {
                     <img
                         className='object-cover w-full h-full rounded-full'
                         src={
-                            imgPath === `${API_BASE_URL}null`
+                            imgPath === `http://${API_BASE_URL}:8000null`
                                 ? placeHolderImg
                                 : imgPath
                         }
@@ -93,7 +93,7 @@ const ShowMenu = () => {
                                     <div className='flex items-center justify-center border border-gray-400 border-solid rounded-full w-14 h-14'>
                                         <img className='object-cover w-12 h-12 rounded-full'
                                             src={
-                                                imgPath === `${API_BASE_URL}null`
+                                                imgPath === `http://${API_BASE_URL}:8000null`
                                                     ? placeHolderImg
                                                     : imgPath
                                             }

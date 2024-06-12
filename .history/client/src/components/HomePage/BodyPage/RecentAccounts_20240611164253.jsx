@@ -19,11 +19,11 @@ const RecentAccounts = ({ searchTerm, onSearchChange }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // let apiUrl = `${API_BASE_URL}/api/contact/recent/${id_card}/${currentPage}`;
-                let response = await fetch(`${API_BASE_URL}/api/contact/recent/${id_card}/${currentPage}`);
+                // let apiUrl = `http://${API_BASE_URL}:8000/api/contact/recent/${id_card}/${currentPage}`;
+                let response = await fetch(`http://${API_BASE_URL}:8000/api/contact/recent/${id_card}/${currentPage}`);
                 // Kiểm tra xem có từ khóa tìm kiếm không
                 if (searchTerm) {
-                    response = await fetch(`${API_BASE_URL}/api/contact/${id_card}/${currentPage}/${searchTerm}`);
+                    response = await fetch(`http://${API_BASE_URL}:8000/api/contact/${id_card}/${currentPage}/${searchTerm}`);
                 }
                 const apiData = await response.json();
 
@@ -44,7 +44,7 @@ const RecentAccounts = ({ searchTerm, onSearchChange }) => {
         event.stopPropagation();
 
         try {
-            const response = await fetch(`${API_BASE_URL}/api/contact/like/${id_card}/${contact_id}`, {
+            const response = await fetch(`http://${API_BASE_URL}:8000/api/contact/like/${id_card}/${contact_id}`, {
                 method: 'PUT',
             });
             const responseData = await response.json();
@@ -68,13 +68,13 @@ const RecentAccounts = ({ searchTerm, onSearchChange }) => {
     const setImg = (e) => {
         // console.log(data.img_url)
         let placeHolderImg = "";
-        let imgPath = `${API_BASE_URL}${e.img_url}`;
+        let imgPath = `http://${API_BASE_URL}:8000${e.img_url}`;
         // console.log(imgPath)
         if (e.user_name) {
             const nameSplit = e.user_name.split(" ");
             placeHolderImg = `https://ui-avatars.com/api/?name=${nameSplit[0]}+${nameSplit[1]}`;
         }
-        return imgPath === `${API_BASE_URL}null` ? placeHolderImg : imgPath;
+        return imgPath === `http://${API_BASE_URL}:8000null` ? placeHolderImg : imgPath;
 
     }
 

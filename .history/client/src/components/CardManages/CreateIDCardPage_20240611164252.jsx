@@ -17,7 +17,7 @@ const CreateIDCardPage = () => {
 
         try {
             // Gọi API để tạo một bản ghi mới trong bảng Manager
-            const response = await axios.post(`${API_BASE_URL}/api/manager`, {
+            const response = await axios.post(`http://${API_BASE_URL}:8000/api/manager`, {
                 id_card: idCard,
                 role: role
             });

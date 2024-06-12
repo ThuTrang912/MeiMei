@@ -10,7 +10,7 @@ import API_BASE_URL from '../../apiConfig';
 const img = 'meimei_login_img.png';
 const SignUpPage = () => {
     const http = axios.create({
-        baseURL: `${API_BASE_URL}`,
+        baseURL: `http://${API_BASE_URL}:8000`,
 
         headers: {
             "X-Requested-with": "XMLHttpRequest",
@@ -106,7 +106,7 @@ const SignUpPage = () => {
             }
             const csrf = await http.get("/sanctum/csrf-cookie");
             const register = await http.post(
-                `${API_BASE_URL}/api/user`,
+                `http://${API_BASE_URL}:8000/api/user`,
                 formData
             );
             console.log("Registration successful:", register.data);

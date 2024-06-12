@@ -18,7 +18,7 @@ const SocialMediaPage = () => {
   };
 
   const http = axios.create({
-    baseURL: `${API_BASE_URL}`,
+    baseURL: `http://${API_BASE_URL}:8000`,
     headers: {
       "X-Requested-with": "XMLHttpRequest",
     },
@@ -30,7 +30,7 @@ const SocialMediaPage = () => {
 
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/user/${idcard}`)
+    fetch(`http://${API_BASE_URL}:8000/api/user/${idcard}`)
       .then((response) => response.json())
       .then((apiData) => {
         setData(apiData);
@@ -67,11 +67,11 @@ const SocialMediaPage = () => {
       const csrf = await http.get("/sanctum/csrf-cookie");
       // });
       const update = await http.post(
-        `${API_BASE_URL}/api/user/${idcard}`,
+        `http://${API_BASE_URL}:8000/api/user/${idcard}`,
         updatedDatas
       );
       const user = await http.get(
-        `${API_BASE_URL}/api/user/${idcard}`
+        `http://${API_BASE_URL}:8000/api/user/${idcard}`
       );
       const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       // console.log(response)

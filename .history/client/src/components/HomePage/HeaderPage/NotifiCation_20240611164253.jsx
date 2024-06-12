@@ -13,7 +13,7 @@ const NotifiCation = ({ onClose }) => {
         const fetchData = async () => {
             try {
                 const http = axios.create({
-                    baseURL: `${API_BASE_URL}`,
+                    baseURL: `http://${API_BASE_URL}:8000`,
                     headers: {
                         'X-Requested-with': 'XMLHttpRequest',
                     },
@@ -38,13 +38,13 @@ const NotifiCation = ({ onClose }) => {
     const setImg = (e) => {
        // console.log(data.img_url)
       let placeHolderImg = "";
-      let imgPath = `${API_BASE_URL}${e.img_url}`;
+      let imgPath = `http://${API_BASE_URL}:8000${e.img_url}`;
       // console.log(imgPath)
       if (e.user_name) {
           const nameSplit = e.user_name.split(" ");
           placeHolderImg = `https://ui-avatars.com/api/?name=${nameSplit[0]}+${nameSplit[1]}`;
       }
-      return imgPath === `${API_BASE_URL}null`? placeHolderImg: imgPath;
+      return imgPath === `http://${API_BASE_URL}:8000null`? placeHolderImg: imgPath;
       
     }
 

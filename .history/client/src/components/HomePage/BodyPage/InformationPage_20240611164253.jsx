@@ -15,7 +15,7 @@ const InformationPage = () => {
         const fetchData = async () => {
             try {
                 const http = axios.create({
-                    baseURL: `${API_BASE_URL}`,
+                    baseURL: `http://${API_BASE_URL}:8000`,
                     headers: {
                         "X-Requested-with": "XMLHttpRequest",
                     },
@@ -47,7 +47,7 @@ const InformationPage = () => {
         const fetchData = async () => {
             try {
                 const http = axios.create({
-                    baseURL: `${API_BASE_URL}`,
+                    baseURL: `http://${API_BASE_URL}:8000`,
                     headers: {
                         "X-Requested-with": "XMLHttpRequest",
                     },
@@ -75,7 +75,7 @@ const InformationPage = () => {
     }, [id_card, contact_id]);
 
     let placeHolderImg = "";
-    const imgPath = `${API_BASE_URL}${data.img_url}`;
+    const imgPath = `http://${API_BASE_URL}:8000${data.img_url}`;
     // console.log(imgPath)
     if (data.user_name) {
         const nameSplit = data.user_name.split(" ");
@@ -115,7 +115,7 @@ const InformationPage = () => {
                     <img
                         className='object-cover w-20 h-20 mr-10 border-2 border-white rounded-full'
                         src={
-                            imgPath === `${API_BASE_URL}null`
+                            imgPath === `http://${API_BASE_URL}:8000null`
                                 ? placeHolderImg
                                 : imgPath
                         }

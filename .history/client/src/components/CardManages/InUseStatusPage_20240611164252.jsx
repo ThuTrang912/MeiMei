@@ -11,7 +11,7 @@ const InUseStatusPage = () => {
     useEffect(() => {
         const fetchCardStatus = async () => {
             try {
-                const response = await axios.get(`${API_BASE_URL}/api/manager/status`);
+                const response = await axios.get(`http://${API_BASE_URL}:8000/api/manager/status`);
                 // Filter out cards with status "false" (使用中) and update the state
                 const inUseCards = response.data.filter(item => item.status === '使用中');
                 setCardStatusList(inUseCards);
