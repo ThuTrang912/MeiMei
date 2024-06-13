@@ -1,0 +1,44 @@
+<<<<<<< HEAD
+=======
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "react-hooks"
+  ],
+  "rules": {
+    "no-unused-vars": "warn",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "test": true,
+    "render": true,
+    "screen": true,
+    "expect": true
+  }
+}
+
+>>>>>>> d2d812c3f4674aa8c5f59d64aa648e68c3f17006
