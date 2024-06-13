@@ -106,12 +106,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //
         $user = User::find($id);
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-
-        $user->fill($request->all()); // Use fill() to assign the values
 
         if ($request->hasFile('image')) {
             $rules = [
@@ -131,13 +130,17 @@ class UserController extends Controller
             $publicPath = Storage::url($path);
 
             $user->img_url = $publicPath;
+
+            $user->save();
         }
+
+
+        $user->fill($request->all()); // Use fill() instead of update() to assign the values
 
         $user->save();
 
         return response()->json($user, 200);
     }
-
 
     /**
      * Remove the specified resource from storage.
