@@ -1,34 +1,30 @@
 # MeiMei
-#server
 
-・env.example ファイルを.env にコピーして、データベースの認証情報を更新する
+## Server
 
-・MySQL は autocommit (自動コミットモード)を無効化する方は　 autocommit を設定してください。
+1. Copy the `env.example` file to `.env` and update the database authentication information.
 
-cd server
+2. Disable the MySQL `autocommit` (auto-commit) mode.
 
-composer install 
+3. In the `server` directory:
+   - Run `composer install`
+   - Run `php artisan key:generate`
+   - Run `php artisan migrate` (Create the `meimei` database before running this command: `create database meimei;`)
+   - Run `php artisan storage:link` (Create a link to the images directory)
+   - Run `php artisan serve --port=8000 --host=0.0.0.0` (Open the port for access from your phone)
 
-php artisan key:generate
+## Client
 
-php artisan migrate (tạo database meimei trước khi nhập câu lệnh này create database meimei; )
+1. In the `client` directory:
+   - Run `npm i`
+   - Run `npm start`
 
-php artisan storage:link (tao link lien ket den anh)
+## Accounts
 
-php artisan serve --port=8000 --host=0.0.0.0  (mở port truy cập bằng điện thoại)
+**Example User**
+- Email: `chan@gmail.com`
+- Password: `chan`
 
-#client
-
-cd client
-
-npm i
-
-npm start
-
-** ADMIN
-
-email: admin@meimei.com
-
-password: admin
-
-
+**Admin**
+- Email: `mei@gmail.com`
+- Password: `meimei`
