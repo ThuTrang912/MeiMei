@@ -28,3 +28,9 @@
 **Admin**
 - Email: `mei@gmail.com`
 - Password: `meimei`
+
+## Running on AWS
+
+I have also deployed the application on AWS, so you can try it out at the following URL:
+
+http://3.80.66.243:3000/MyHomePage/
