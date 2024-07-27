@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+<<<<<<< HEAD
 // import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+=======
+//import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+>>>>>>> 1cf5c18a9412573445616731a1c9dbf0a317f120
 import Modal from 'react-modal';
 import API_BASE_URL from '../../../apiConfig';
 
@@ -127,16 +131,27 @@ const ProfilePage = () => {
         console.log(`${key}: ${value}`);
       }
       // Gửi dữ liệu bằng updatedDatas
+<<<<<<< HEAD
       // const csrf = await http.get("/sanctum/csrf-cookie");
+=======
+      //const csrf = await http.get("/sanctum/csrf-cookie");
+>>>>>>> 1cf5c18a9412573445616731a1c9dbf0a317f120
       // });
       const update = await http.post(
         `${API_BASE_URL}/api/user/${idcard}`,
         updatedDatas
       );
+<<<<<<< HEAD
       // const user = await http.get(
       //   `${API_BASE_URL}/api/user/${idcard}`
       // );
       // const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
+=======
+      const user = await http.get(
+        `${API_BASE_URL}/api/user/${idcard}`
+      );
+      //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
+>>>>>>> 1cf5c18a9412573445616731a1c9dbf0a317f120
       setImgUrl(undefined)
       // console.log(response)
       if (update.status === 200) {
