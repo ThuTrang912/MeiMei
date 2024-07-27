@@ -21,9 +21,13 @@
 
 ## Accounts
 
-**Example User**
-- Email: `chan@gmail.com`
+**Example User 1**
+- Email: `nguyenthithutrang0122@gmail.com`
 - Password: `chan`
+
+**Example User 1**
+- Email: `mei@gmail.com`
+- Password: `meimei`
 
 **Admin**
 - Email: `mei@gmail.com`
