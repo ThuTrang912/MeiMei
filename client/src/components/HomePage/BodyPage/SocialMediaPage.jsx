@@ -64,16 +64,16 @@ const SocialMediaPage = () => {
         console.log(`${key}: ${value}`);
       }
       // Gửi dữ liệu bằng updatedDatas
-      const csrf = await http.get("/sanctum/csrf-cookie");
+      //const csrf = await http.get("/sanctum/csrf-cookie");
       // });
       const update = await http.post(
         `${API_BASE_URL}/api/user/${idcard}`,
         updatedDatas
       );
-      const user = await http.get(
-        `${API_BASE_URL}/api/user/${idcard}`
-      );
-      const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
+      //const user = await http.get(
+      //  `${API_BASE_URL}/api/user/${idcard}`
+      //);
+      //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       // console.log(response)
       if (update.status === 200) {
         console.log("Updated SocialMediaPage Successful");
@@ -93,7 +93,7 @@ const SocialMediaPage = () => {
         <ul className='box-border flex flex-col justify-center w-full h-full p-5'>
           <p className='mb-5 ml-2 text-2xl font-bold text-[#0E3A36]'>ソーシャルメディア</p>
           <li className='box-border flex items-center w-full p-1 m-1 border-b border-b-gray-500 border-b-solid'>
-            <img className='w-8 mr-2' src='https://cdn-icons-png.flaticon.com/128/725/725372.png' alt='' />
+            <img className='w-8 mr-2' src='https://cdn-icons-png.flaticon.com/512/13651/13651101.png' alt='' />
             <input
               className='w-full h-12 p-1 text-base transition border-none rounded-md duration-200s ManageFormInput'
               // style={{

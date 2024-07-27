@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+//import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import Modal from 'react-modal';
 import API_BASE_URL from '../../../apiConfig';
 
@@ -127,7 +127,7 @@ const ProfilePage = () => {
         console.log(`${key}: ${value}`);
       }
       // Gửi dữ liệu bằng updatedDatas
-      const csrf = await http.get("/sanctum/csrf-cookie");
+      //const csrf = await http.get("/sanctum/csrf-cookie");
       // });
       const update = await http.post(
         `${API_BASE_URL}/api/user/${idcard}`,
@@ -136,7 +136,7 @@ const ProfilePage = () => {
       const user = await http.get(
         `${API_BASE_URL}/api/user/${idcard}`
       );
-      const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
+      //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       setImgUrl(undefined)
       // console.log(response)
       if (update.status === 200) {

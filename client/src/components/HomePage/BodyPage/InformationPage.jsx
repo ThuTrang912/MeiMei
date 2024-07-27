@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import API_BASE_URL from '../../../apiConfig';
 import axios from "axios";
@@ -7,7 +7,7 @@ import axios from "axios";
 const InformationPage = () => {
     const { id_card, contact_id } = useParams();
     // Truy cập dữ liệu người dùng đã lưu trữ sau khi đăng nhập
-    const user = JSON.parse(localStorage.getItem('currentUser')).data;
+    //const user = JSON.parse(localStorage.getItem('currentUser')).data;
     const [data, setData] = useState([]);
     const [company, setCompany] = useState([]);
 
@@ -82,8 +82,8 @@ const InformationPage = () => {
         placeHolderImg = `https://ui-avatars.com/api/?name=${nameSplit[0]}+${nameSplit[1]}`;
     }
 
-    const myDivRef_com = useRef();
-    const myDivRef_account = useRef();
+    //const myDivRef_com = useRef();
+    //const myDivRef_account = useRef();
     const [isScrolled, setIsScrolled] = useState(false);
 
     const scrollToDiv = () => {
@@ -152,8 +152,8 @@ const InformationPage = () => {
                     <li className='py-1 text-xl text-[#FFFFFF] break-all'>{data.email}</li>
                     <li className='py-1 text-xl text-[#FFFFFF]'>{data.tel}</li>
                     <li className='py-1 text-xl text-[#FFFFFF]'>〒{data.post_code} - {data.address}</li>
-                    <li className='py-1 text-xl text-[#FFFFFF]'>Instagram: {data.instagram}</li>
-                    <li className='py-1 text-xl text-[#FFFFFF]'>X(Twitter): {data.x}</li>
+<li className='py-1 text-xl text-gray-400'>Github: {data.x}</li>
+<li className='py-1 text-xl text-gray-400'>Instagram: {data.instagram}</li>
                 </ul>
             </div>
 
