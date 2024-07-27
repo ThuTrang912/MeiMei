@@ -21,9 +21,13 @@
 
 ## Accounts
 
-**Example User**
-- Email: `chan@gmail.com`
+**Example User 1**
+- Email: `nguyenthithutrang0122@gmail.com`
 - Password: `chan`
+
+**Example User 1**
+- Email: `mei@gmail.com`
+- Password: `meimei`
 
 **Admin**
 - Email: `mei@gmail.com`
@@ -41,6 +45,14 @@ The application will have the following user interface:
 
 ![Ảnh chụp màn hình 2024-06-28 140631](https://github.com/ThuTrang912/MeiMei/assets/129019073/bdf5b8f1-1441-4acd-b140-d50df0762de9)
 
+**User side**
+
 ![Ảnh chụp màn hình 2024-06-28 140619](https://github.com/ThuTrang912/MeiMei/assets/129019073/9ac9863e-6959-4e6b-8cb1-73375855f521)
+
+**Admin side**
+
+![Frame 14](https://github.com/user-attachments/assets/a73ec86d-17cd-41ec-9c04-21d81617ea7b)
+
+
 
 
