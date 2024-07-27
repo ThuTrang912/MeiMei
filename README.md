@@ -51,6 +51,7 @@ The application will have the following user interface:
 
 **Admin side**
 
+![Frame 14](https://github.com/user-attachments/assets/a73ec86d-17cd-41ec-9c04-21d81617ea7b)
 
 
 
