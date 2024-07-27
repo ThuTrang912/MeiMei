@@ -45,7 +45,6 @@ class ManageGroupController extends Controller
         //
         $group = ManageGroup::create($request->all());
         return response()->json($group, 201);
-
     }
 
     /**
@@ -104,8 +103,6 @@ class ManageGroupController extends Controller
             ->delete();
         // Records were deleted successfully
         return response()->json(['message' => 'Contact deleted successfully'], 200);
-
-
     }
 
     public function deleteFollower($id_card)
@@ -137,6 +134,4 @@ class ManageGroupController extends Controller
 
         return response()->json(['data' => $groupUser], 200);
     }
-
-
 }

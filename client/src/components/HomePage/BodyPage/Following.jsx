@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Following = ({ searchTerm, onSearchChange }) => {
   const http = axios.create({
-    baseURL: `http://${API_BASE_URL}:8000`,
+    baseURL: `http://${API_BASE_URL}`,
     headers: {
       "X-Requested-with": "XMLHttpRequest",
     },
