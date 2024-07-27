@@ -52,6 +52,7 @@ The application is deployed on AWS. Try it out at:
 
 ## User Interface
 The application features the following UI:
+![I25_208_MeiMei_main](https://github.com/user-attachments/assets/915a3bfe-1f99-4a57-9324-219809b12b5a)
 
 **User Side**  
 ![User Side](https://github.com/ThuTrang912/MeiMei/assets/129019073/9ac9863e-6959-4e6b-8cb1-73375855f521)
