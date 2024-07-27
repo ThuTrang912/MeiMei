@@ -152,8 +152,8 @@ const InformationPage = () => {
                     <li className='py-1 text-xl text-[#FFFFFF] break-all'>{data.email}</li>
                     <li className='py-1 text-xl text-[#FFFFFF]'>{data.tel}</li>
                     <li className='py-1 text-xl text-[#FFFFFF]'>〒{data.post_code} - {data.address}</li>
-<li className='py-1 text-xl text-gray-400'>Github: {data.x}</li>
-<li className='py-1 text-xl text-gray-400'>Instagram: {data.instagram}</li>
+<li className='py-1 text-xl text-[#FFFFFF]'>Github: <a href={data.x} className='py-1 text-xl text-gray-400 ml-0' target="_blank" rel="noopener noreferrer">{data.x}</a></li>
+<li className='py-1 text-xl text-[#FFFFFF]'>Instagram: <a href={data.instagram} className='py-1 text-xl text-gray-400 ml-0' target="_blank" rel="noopener noreferrer">{data.instagram}</a></li>
                 </ul>
             </div>
 
