@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Following = ({ searchTerm, onSearchChange }) => {
   const http = axios.create({
-    baseURL: `http://${API_BASE_URL}:8000`,
+    baseURL: `${API_BASE_URL}`,
     headers: {
       "X-Requested-with": "XMLHttpRequest",
     },
@@ -99,7 +99,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
     setNewGroupVisible(updatedisNewGroupVisible);
 
     // Lấy danh sách nhóm mới đã thêm
-    const response = await fetch(`http://${API_BASE_URL}:8000/api/manage/group/${id}`);
+    const response = await fetch(`${API_BASE_URL}/api/manage/group/${id}`);
     const responseData = await response.json();
     setSelectedItems(responseData.data);
 
@@ -123,13 +123,13 @@ const Following = ({ searchTerm, onSearchChange }) => {
     e.stopPropagation();
 
     try {
-      const response = await fetch(`http://${API_BASE_URL}:8000/api/contact/${id_card}/${contact_id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact/${id_card}/${contact_id}`, {
         method: 'DELETE',
       });
       const responseData = await response.json();
       console.log('delete', responseData);
 
-      const res = await fetch(`http://${API_BASE_URL}:8000/api/manage/${contact_id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/manage/${contact_id}`, {
         method: 'DELETE',
       });
       const resData = await res.json();
@@ -158,10 +158,10 @@ const Following = ({ searchTerm, onSearchChange }) => {
 
   useEffect(() => {
     // setSearch(localStorage.getItem('searchTerm'));
-    let apiUrl = `http://${API_BASE_URL}:8000/api/contact/following/${id_card}/${currentPage}`;
+    let apiUrl = `${API_BASE_URL}/api/contact/following/${id_card}/${currentPage}`;
     // Kiểm tra xem có từ khóa tìm kiếm không
     if (searchTerm) {
-      apiUrl = `http://${API_BASE_URL}:8000/api/contact/${id_card}/${currentPage}/${searchTerm}`;
+      apiUrl = `${API_BASE_URL}/api/contact/${id_card}/${currentPage}/${searchTerm}`;
 
     }
 
@@ -181,7 +181,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
 
 
   useEffect(() => {
-    fetch(`http://${API_BASE_URL}:8000/api/groups/${id_card}`)
+    fetch(`${API_BASE_URL}/api/groups/${id_card}`)
       .then((response) => response.json())
       .then((apiData) => {
         setGroup(apiData.data);
@@ -206,7 +206,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
     //event.stopPropagation();
 
     console.log('click', contact_id);
-    fetch(`http://${API_BASE_URL}:8000/api/contact/like/${id_card}/${contact_id}`, {
+    fetch(`${API_BASE_URL}/api/contact/like/${id_card}/${contact_id}`, {
       method: 'PUT',
     })
       .then((response) => response.json())
@@ -235,17 +235,17 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const csrf = await http.get("/sanctum/csrf-cookie");
 
       const addGroup = await http.post(
-        `http://${API_BASE_URL}:8000/api/group`,
+        `${API_BASE_URL}/api/group`,
         formData
       );
 
       // Lấy danh sách nhóm mới đã thêm
-      const response = await fetch(`http://${API_BASE_URL}:8000/api/groups/${id_card}`);
+      const response = await fetch(`${API_BASE_URL}/api/groups/${id_card}`);
       const responseData = await response.json();
       setGroup(responseData.data);
 
       const user = await http.get(
-        `http://${API_BASE_URL}:8000/api/user/${id_card}`
+        `${API_BASE_URL}/api/user/${id_card}`
       );
       const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       console.log("Added Group Successful");
@@ -267,7 +267,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
     if (isChecked) {
       try {
         // Kiểm tra xem id_card đã tồn tại trong group_id hay chưa
-        const checkExistenceResponse = await http.get(`http://${API_BASE_URL}:8000/api/manage/${group_id}/${id_card}`);
+        const checkExistenceResponse = await http.get(`${API_BASE_URL}/api/manage/${group_id}/${id_card}`);
         if (checkExistenceResponse.data.length !== 0) {
           console.log("User already exists in the group. No action needed.");
         } else {
@@ -283,7 +283,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
           const csrf = await http.get("/sanctum/csrf-cookie");
 
           const addGroup = await http.post(
-            `http://${API_BASE_URL}:8000/api/manage`,
+            `${API_BASE_URL}/api/manage`,
             formData
           );
 
@@ -294,7 +294,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
       }
     } else {
       // if (group_id) {
-      const response = await fetch(`http://${API_BASE_URL}:8000/api/manage/${group_id}/${id_card}`, {
+      const response = await fetch(`${API_BASE_URL}/api/manage/${group_id}/${id_card}`, {
         method: 'DELETE',
       });
       const responseData = await response.json();
@@ -308,7 +308,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
     }
 
     // Lấy danh sách nhóm mới đã thêm
-    const response = await fetch(`http://${API_BASE_URL}:8000/api/manage/group/${id_card}`);
+    const response = await fetch(`${API_BASE_URL}/api/manage/group/${id_card}`);
     const responseData = await response.json();
     setSelectedItems(responseData.data);
     console.log("new member of: ", responseData.data);
@@ -318,13 +318,13 @@ const Following = ({ searchTerm, onSearchChange }) => {
   const setImg = (e) => {
     // console.log(data.img_url)
     let placeHolderImg = "";
-    let imgPath = `http://${API_BASE_URL}:8000${e.img_url}`;
+    let imgPath = `${API_BASE_URL}${e.img_url}`;
     // console.log(imgPath)
     if (e.user_name) {
       const nameSplit = e.user_name.split(" ");
       placeHolderImg = `https://ui-avatars.com/api/?name=${nameSplit[0]}+${nameSplit[1]}`;
     }
-    return imgPath === `http://${API_BASE_URL}:8000null` ? placeHolderImg : imgPath;
+    return imgPath === `${API_BASE_URL}null` ? placeHolderImg : imgPath;
 
   }
 
