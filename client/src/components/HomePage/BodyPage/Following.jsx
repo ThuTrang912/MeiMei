@@ -1,4 +1,4 @@
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../../../apiConfig';
 import axios from "axios";
@@ -132,7 +132,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const res = await fetch(`${API_BASE_URL}/api/manage/${contact_id}`, {
         method: 'DELETE',
       });
-      const resData = await res.json();
+      //const resData = await res.json();
       console.log('delete', responseData);
 
       setIsSaved(prevIsSaved => {
@@ -220,7 +220,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
   };
 
   //
-  const handleCreateGroup = async (e, index) => {
+  const handleCreateGroup = async (e) => {
     e.preventDefault();
     try {
       const formData = new FormData();
@@ -232,12 +232,12 @@ const Following = ({ searchTerm, onSearchChange }) => {
       }
 
       // Gửi dữ liệu bằng updatedDatas
-      const csrf = await http.get("/sanctum/csrf-cookie");
+      //const csrf = await http.get("/sanctum/csrf-cookie");
 
-      const addGroup = await http.post(
-        `${API_BASE_URL}/api/group`,
-        formData
-      );
+      // const addGroup = await http.post(
+      //   `${API_BASE_URL}/api/group`,
+      //   formData
+      // );
 
       // Lấy danh sách nhóm mới đã thêm
       const response = await fetch(`${API_BASE_URL}/api/groups/${id_card}`);
@@ -247,7 +247,7 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const user = await http.get(
         `${API_BASE_URL}/api/user/${id_card}`
       );
-      const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
+      //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       console.log("Added Group Successful");
       setGroupName('');
       setIsSaved(prevIsSaved => {
@@ -280,12 +280,12 @@ const Following = ({ searchTerm, onSearchChange }) => {
           }
 
           // Gửi dữ liệu bằng updatedDatas
-          const csrf = await http.get("/sanctum/csrf-cookie");
+          //const csrf = await http.get("/sanctum/csrf-cookie");
 
-          const addGroup = await http.post(
-            `${API_BASE_URL}/api/manage`,
-            formData
-          );
+          // const addGroup = await http.post(
+          //   `${API_BASE_URL}/api/manage`,
+          //   formData
+          // );
 
           console.log("Added User to Group Successful");
         }
