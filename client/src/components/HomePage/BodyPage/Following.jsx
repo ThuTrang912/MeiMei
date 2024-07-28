@@ -1,9 +1,7 @@
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import API_BASE_URL from '../../../apiConfig';
 import axios from "axios";
-
-
 
 const Following = ({ searchTerm, onSearchChange }) => {
   const http = axios.create({
@@ -13,44 +11,37 @@ const Following = ({ searchTerm, onSearchChange }) => {
     },
     withCredentials: true,
   });
-  // Truy cập dữ liệu người dùng đã lưu trữ sau khi đăng nhập
+
   const userData = JSON.parse(localStorage.getItem('currentUser'));
   const id_card = userData.data.id_card;
 
   const [data, setData] = useState([]);
   const [group, setGroup] = useState([]);
-
-
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [isSaved, setIsSaved] = useState();
-
-  // hien thi them xoa nhom
+  const [isSaved, setIsSaved] = useState(false);
   const [menuVisibleList, setMenuVisibleList] = useState(Array(data.length).fill(false));
   const [isNewGroupVisible, setNewGroupVisible] = useState(Array(data.length).fill(false));
   const [showInput, setShowInput] = useState(Array(data.length).fill(false));
-  const [showButtom, setShowButtom] = useState(Array(data.length).fill(false));
+  const [showButton, setShowButton] = useState(Array(data.length).fill(false));
   const [openedMenuIndex, setOpenedMenuIndex] = useState(null);
   const [group_name, setGroupName] = useState('');
   const [selectedItems, setSelectedItems] = useState([]);
-
-
 
   const handlePlusGroup = (e, index) => {
     const showInputList = [...showInput];
     showInputList[index] = !showInputList[index];
     setShowInput(showInputList);
 
-    const showButtomtList = [...showButtom];
-    showButtomtList[index] = !showButtomtList[index];
-    setShowButtom(showButtomtList);
+    const showButtonList = [...showButton];
+    showButtonList[index] = !showButtonList[index];
+    setShowButton(showButtonList);
   };
 
   const handleMenuClick = (e, index) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // Đóng menu trước đó nếu có
     if (openedMenuIndex !== null) {
       setMenuVisibleList((prevMenuList) => {
         const updatedMenuList = [...prevMenuList];
@@ -64,17 +55,13 @@ const Following = ({ searchTerm, onSearchChange }) => {
       });
     }
 
-    // Mở menu mới
     setMenuVisibleList((prevMenuList) => {
       const updatedMenuList = [...prevMenuList];
       updatedMenuList[index] = !updatedMenuList[index];
       return updatedMenuList;
-    })
-    // Cập nhật index của menu đang mở
+    });
     setOpenedMenuIndex(index);
   };
-
-
 
   const handleCloseMenuClick = (e, index, selectedItems) => {
     const updatedMenuVisibleList = [...menuVisibleList];
@@ -85,11 +72,9 @@ const Following = ({ searchTerm, onSearchChange }) => {
     updatedisNewGroupVisible[index] = false;
     setNewGroupVisible(updatedisNewGroupVisible);
 
-    // Đặt menu đang mở về null khi đóng
     setOpenedMenuIndex(null);
     setSelectedItems(selectedItems);
-  }
-
+  };
 
   const handleAddToGroupClick = async (e, index, id) => {
     e.preventDefault();
@@ -98,22 +83,17 @@ const Following = ({ searchTerm, onSearchChange }) => {
     updatedisNewGroupVisible[index] = !updatedisNewGroupVisible[index];
     setNewGroupVisible(updatedisNewGroupVisible);
 
-    // Lấy danh sách nhóm mới đã thêm
     const response = await fetch(`${API_BASE_URL}/api/manage/group/${id}`);
     const responseData = await response.json();
     setSelectedItems(responseData.data);
-
   };
 
-  // Thêm một sự kiện lắng nghe click ở ngoài menu để đóng menu
   const handleOutsideClick = (e) => {
-    // Kiểm tra xem click có xảy ra bên trong element menu hay không
     if (!e.target.closest(".show-menu")) {
-      // Đóng tất cả các menu và nhóm mới
       setMenuVisibleList(Array(data.length).fill(false));
       setNewGroupVisible(Array(data.length).fill(false));
       setShowInput(Array(data.length).fill(false));
-      setShowButtom(Array(data.length).fill(false));
+      setShowButton(Array(data.length).fill(false));
       setSelectedItems([]);
     }
   };
@@ -129,40 +109,25 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const responseData = await response.json();
       console.log('delete', responseData);
 
-      // const res = await fetch(`${API_BASE_URL}/api/manage/${contact_id}`, {
-      //   method: 'DELETE',
-      // });
-      //const resData = await res.json();
-      console.log('delete', responseData);
-
-      setIsSaved(prevIsSaved => {
-        // Sử dụng hàm callback để đảm bảo cập nhật đồng bộ và kích hoạt useEffect
-        return !prevIsSaved;
-      });
-      handleCloseMenuClick(e, index)
+      setIsSaved(prevIsSaved => !prevIsSaved);
+      handleCloseMenuClick(e, index);
     } catch (error) {
       console.error('delete', error);
     }
   };
 
-
-  // Thêm sự kiện lắng nghe click ở cấp cao nhất, chẳng hạn như trên body hoặc một container lớn
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick);
 
-    // Cleanup sự kiện khi component unmounts
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
   useEffect(() => {
-    // setSearch(localStorage.getItem('searchTerm'));
     let apiUrl = `${API_BASE_URL}/api/contact/following/${id_card}/${currentPage}`;
-    // Kiểm tra xem có từ khóa tìm kiếm không
     if (searchTerm) {
       apiUrl = `${API_BASE_URL}/api/contact/${id_card}/${currentPage}/${searchTerm}`;
-
     }
 
     fetch(apiUrl)
@@ -171,41 +136,27 @@ const Following = ({ searchTerm, onSearchChange }) => {
         setData(apiData.data);
         setTotalPages(apiData.totalPages);
         console.log('follower: ', apiData);
-        // localStorage.setItem('searchTerm', "")
-        // setSearch(localStorage.setItem('searchTerm', ""));
       })
       .catch((error) => {
-        console.error("Lỗi khi gửi yêu cầu:", error);
+        console.error("Error fetching followers:", error);
       });
   }, [currentPage, id_card, isSaved, searchTerm]);
-
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/groups/${id_card}`)
       .then((response) => response.json())
       .then((apiData) => {
         setGroup(apiData.data);
-        // setTotalPages(apiData.totalPages);
         console.log('groups: ', apiData.data);
-        // localStorage.setItem('searchTerm', "")
-        // setSearch(localStorage.setItem('searchTerm', ""));
       })
       .catch((error) => {
-        console.error("Lỗi khi gửi yêu cầu:", error);
+        console.error("Error fetching groups:", error);
       });
   }, []);
 
-  // const [isSaved, setIsSaved] = useState(false);
-  // const toggleSaved = () => {
-  //   setIsSaved(!isSaved);
-  // };
-
-  //cách viết phần này của Recent và Following là khác nhau 
   const handleStarClick = (event, id_card, contact_id) => {
     event.preventDefault();
-    //event.stopPropagation();
 
-    console.log('click', contact_id);
     fetch(`${API_BASE_URL}/api/contact/like/${id_card}/${contact_id}`, {
       method: 'PUT',
     })
@@ -215,11 +166,10 @@ const Following = ({ searchTerm, onSearchChange }) => {
         setIsSaved(responseData.data.like);
       })
       .catch((error) => {
-        console.error('like', error);
+        console.error('Error liking contact:', error);
       });
   };
 
-  //
   const handleCreateGroup = async (e) => {
     e.preventDefault();
     try {
@@ -231,42 +181,25 @@ const Following = ({ searchTerm, onSearchChange }) => {
         console.log(`${key}: ${value}`);
       }
 
-      // Gửi dữ liệu bằng updatedDatas
-      //const csrf = await http.get("/sanctum/csrf-cookie");
+      await http.post(`${API_BASE_URL}/api/group`, formData);
 
-      // const addGroup = await http.post(
-      //   `${API_BASE_URL}/api/group`,
-      //   formData
-      // );
-
-      // Lấy danh sách nhóm mới đã thêm
       const response = await fetch(`${API_BASE_URL}/api/groups/${id_card}`);
       const responseData = await response.json();
       setGroup(responseData.data);
 
-      // const user = await http.get(
-      //   `${API_BASE_URL}/api/user/${id_card}`
-      // );
-      //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
-      console.log("Added Group Successful");
+      console.log("Added Group Successfully");
       setGroupName('');
-      setIsSaved(prevIsSaved => {
-        // Sử dụng hàm callback để đảm bảo cập nhật đồng bộ và kích hoạt useEffect
-        return !prevIsSaved;
-      })
+      setIsSaved(prevIsSaved => !prevIsSaved);
     } catch (error) {
-      console.error("Lỗi:", error);
+      console.error("Error adding group:", error);
     }
   };
 
-  // Cập nhật các mục đã chọn
-  // Cập nhật các mục đã chọn
   const handleCheckboxChange = async (event, group_id, id_card) => {
     const isChecked = event.target.checked;
 
     if (isChecked) {
       try {
-        // Kiểm tra xem id_card đã tồn tại trong group_id hay chưa
         const checkExistenceResponse = await http.get(`${API_BASE_URL}/api/manage/${group_id}/${id_card}`);
         if (checkExistenceResponse.data.length !== 0) {
           console.log("User already exists in the group. No action needed.");
@@ -275,209 +208,233 @@ const Following = ({ searchTerm, onSearchChange }) => {
           formData.append("group_id", group_id);
           formData.append("id_card", id_card);
 
-          for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-          }
-
-          // Gửi dữ liệu bằng updatedDatas
-          //const csrf = await http.get("/sanctum/csrf-cookie");
-
-          // const addGroup = await http.post(
-          //   `${API_BASE_URL}/api/manage`,
-          //   formData
-          // );
-
-          console.log("Added User to Group Successful");
+          await http.post(`${API_BASE_URL}/api/manage`, formData);
+          console.log("Added User to Group Successfully");
         }
       } catch (error) {
-        console.error("Lỗi:", error);
+        console.error("Error adding user to group:", error);
       }
     } else {
-      // if (group_id) {
       const response = await fetch(`${API_BASE_URL}/api/manage/${group_id}/${id_card}`, {
         method: 'DELETE',
       });
       const responseData = await response.json();
-
       console.log('delete', responseData);
-      setIsSaved(prevIsSaved => {
-        // Sử dụng hàm callback để đảm bảo cập nhật đồng bộ và kích hoạt useEffect
-        return !prevIsSaved;
-      });
-      // }
+      setIsSaved(prevIsSaved => !prevIsSaved);
     }
 
-    // Lấy danh sách nhóm mới đã thêm
     const response = await fetch(`${API_BASE_URL}/api/manage/group/${id_card}`);
     const responseData = await response.json();
     setSelectedItems(responseData.data);
     console.log("new member of: ", responseData.data);
-    // setGroupId(group_id);
   };
 
   const setImg = (e) => {
-    // console.log(data.img_url)
     let placeHolderImg = "";
     let imgPath = `${API_BASE_URL}${e.img_url}`;
-    // console.log(imgPath)
     if (e.user_name) {
       const nameSplit = e.user_name.split(" ");
-      placeHolderImg = `https://ui-avatars.com/api/?name=${nameSplit[0]}+${nameSplit[1]}`;
+      placeHolderImg = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
+    } else {
+      const nameSplit = e.name.split(" ");
+      placeHolderImg = nameSplit[0].charAt(0).toUpperCase() + nameSplit[1].charAt(0).toUpperCase();
     }
-    return imgPath === `${API_BASE_URL}null` ? placeHolderImg : imgPath;
 
-  }
-
-  const goToPage = (page) => {
-    if (page > 0 && page <= totalPages) {
-      setCurrentPage(page);
-    }
+    return e.img_url ? (
+      <img className="rounded-circle avatar-xs" src={imgPath} alt="user-pic" />
+    ) : (
+      <div className="avatar-xs">
+        <span className="avatar-title rounded-circle">{placeHolderImg}</span>
+      </div>
+    );
   };
 
-  useEffect(() => {
-    // Thông báo cho component rằng đã có sự thay đổi trong searchTerm
-    onSearchChange(searchTerm);
-  }, [searchTerm, onSearchChange, selectedItems]);
+  const renderFollowers = (follower) => {
+    const followPage = data.map((e, index) => {
+      const followButton = (
+        <div className="flex-shrink-0">
+          <div className="d-flex align-items-center">
+            <div className="flex-shrink-0">
+              <Link to="#" className="text-body d-block">
+                {setImg(e)}
+              </Link>
+            </div>
+            <div className="flex-grow-1 ms-2 overflow-hidden">
+              <h5 className="fs-13 mb-1">
+                <Link to="#" className="text-body d-block">{e.user_name}</Link>
+              </h5>
+              <p className="text-muted text-truncate mb-0">{e.contact_id}</p>
+            </div>
+          </div>
+        </div>
+      );
+
+      return (
+        <div className="col" key={e.contact_id}>
+          <div className="card team-box">
+            <div className="team-cover">
+              <img src={`${API_BASE_URL}${e.cover_img_url}`} alt="" className="img-fluid" />
+            </div>
+            <div className="card-body p-4">
+              <div className="row align-items-center team-row">
+                <div className="col-6">
+                  {followButton}
+                </div>
+                <div className="col-6">
+                  <ul className="list-inline list-group-flush ms-auto mb-0">
+                    <li className="list-inline-item">
+                      <button
+                        type="button"
+                        className={`btn avatar-xs p-0 favourite-btn ${e.like ? "active" : ""}`}
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Favourite"
+                        onClick={(event) => handleStarClick(event, id_card, e.contact_id)}
+                      >
+                        <span className="avatar-title bg-transparent fs-15">
+                          <i className="ri-star-fill"></i>
+                        </span>
+                      </button>
+                    </li>
+                    <li className="list-inline-item">
+                      <div className="dropdown">
+                        <button
+                          className="btn btn-soft-danger btn-sm dropdown"
+                          data-bs-toggle="dropdown"
+                          aria-expanded={menuVisibleList[index]}
+                          onClick={(e) => handleMenuClick(e, index)}
+                        >
+                          <i className="ri-more-fill align-bottom"></i>
+                        </button>
+                        <ul
+                          className={`dropdown-menu dropdown-menu-end ${menuVisibleList[index] ? "show" : ""}`}
+                        >
+                          <li>
+                            <Link
+                              to="#"
+                              className="dropdown-item"
+                              onClick={(e) => handleDeleteFollowerClick(e, index, id_card, e.contact_id)}
+                            >
+                              <i className="ri-delete-bin-6-line me-2 align-middle"></i>Delete
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="#"
+                              className="dropdown-item"
+                              onClick={(e) => handleAddToGroupClick(e, index, id_card)}
+                            >
+                              <i className="ri-user-add-line me-2 align-middle"></i>Add to Groups
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="#"
+                              className="dropdown-item"
+                              onClick={(e) => handlePlusGroup(e, index)}
+                            >
+                              <i className="ri-group-line me-2 align-middle"></i>New Group
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className={`row ${isNewGroupVisible[index] ? "show-menu" : ""}`}>
+              <div className="mb-3">
+                {selectedItems && (
+                  <div className={`row show-menu mb-3 ${isNewGroupVisible[index] ? "show-menu" : ""}`}>
+                    <label className="form-label">Group</label>
+                    {selectedItems.map((g, groupIndex) => (
+                      <div className="form-check form-check-primary mb-3" key={groupIndex}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={g.id}
+                          checked={selectedItems.some((item) => item.group_id === g.id)}
+                          onChange={(e) => handleCheckboxChange(e, g.id, e.contact_id)}
+                        />
+                        <label className="form-check-label" htmlFor={g.id}>
+                          {g.group_name}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <div className={`col-lg-12 show-menu ${showInput[index] ? "show-menu" : ""}`}>
+                  <label htmlFor="group_name" className="form-label">New Group</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="group_name"
+                    placeholder="Enter new group"
+                    value={group_name}
+                    onChange={(e) => setGroupName(e.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    className={`btn btn-success w-100 show-menu ${showButton[index] ? "show-menu" : ""}`}
+                    onClick={handleCreateGroup}
+                  >
+                    <i className="las la-plus-circle"></i> Add to Group
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
+
+    return followPage;
+  };
 
   return (
     <div>
-      <div className='border-box relative w-full h-screen p-2.5 flex flex-col'>
-
-        {data.map((e, index) => (
-          <div className='show-menu relative flex items-center w-full h-16 pl-1.5 bg-gray-100 my-1 border rounded-lg border-gray-300 transition duration-200 cursor-pointer hover:bg-gray-200 hover:border-gray-200 hover:border hover:rounded-lg'>
-            {/* {setIsSaved(e.like)} */}
-            {/* item-container */}
-            <Link key={e.contact_id} to={`/InformationPage/${id_card}/${e.contact_id}`} className='relative flex items-center w-3/5 p-1 bg-gray-300 border border-gray-300 rounded-lg h-4/5'>
-              {/* item-border */}
-              {/* image-container */}
-              <div className='flex items-center justify-center mr-1 rounded-full w-7 h-7'>
-                <img
-                  className='object-cover w-full h-full border border-gray-400 border-solid rounded-full'
-                  src={setImg(e)}
-                  alt=''
+      <div className="card">
+        <div className="card-header">
+          <div className="row g-2">
+            <div className="col-lg-3">
+              <div className="search-box">
+                <input
+                  type="text"
+                  className="form-control search"
+                  placeholder="Search..."
+                  value={searchTerm}
+                  onChange={onSearchChange}
                 />
+                <i className="ri-search-line search-icon"></i>
               </div>
-              <div className='w-9/12 max-w-full overflow-hidden'>
-                <div className='text-xs'><b>{e.user_name}</b></div>
-                <div className='text-xs text-gray-500'>{e.email}</div>
-              </div>
-
-              {/* chinh sua nhom va so thich */}
-              <div className='absolute right-1'>
-                {/* <div onClick={(event) =>handleMenuClick(event, id_card, e.id_card)} className='text-left'> */}
-                <img
-                  onClick={(event) => handleMenuClick(event, index)}
-                  className='w-3 pb-2'
-                  src='https://cdn-icons-png.flaticon.com/128/2311/2311524.png'
-                  alt=''
-                />
-
-                {/* set ảnh được đánh dấu sao va không được đánh dấu sao */}
-                <div className={index} onClick={(event) => handleStarClick(event, id_card, e.contact_id)}>
-                  {e.like ? (
-                    <img
-                      className='w-3'
-                      src='https://cdn-icons-png.flaticon.com/128/2377/2377810.png'
-                      alt='save'
-                    />
-                  ) : (
-                    <img
-                      className='w-3'
-                      src='https://cdn-icons-png.flaticon.com/128/2377/2377878.png'
-                      alt='nosave'
-                    />
-                  )}
-                </div>
-              </div>
-            </Link>
-
-            <div className='absolute right-1/2 sm:right-[41%] sm:top-[40%]'>
-              {menuVisibleList[index] && (
-                <div className='absolute z-10 inline-flex flex-col w-40 h-auto px-1 text-xs bg-gray-100 border border-gray-300 rounded-md left-5 justify-evenly top-1 drop-shadow-md'>
-                  <div className='absolute flex items-center justify-center w-3 h-3 text-xs rounded-full hover:border-gray-300 hover:border right-1 top-1' onClick={(event) => handleCloseMenuClick(event, index, selectedItems)}>x</div>
-                  <br />
-
-                  <div className='inline-flex items-center justify-between px-1 py-2 mt-1 text-left transition duration-200 ease-in-out hover:bg-gray-200 hover:border hover:border-gray-300 hover:rounded-md' onClick={(event) => handleAddToGroupClick(event, index, e.contact_id)}>
-                    <p>グループに追加する</p>
-                    <img src='https://cdn-icons-png.flaticon.com/64/446/446136.png' className='w-3' />
-                  </div>
-                  <div className='inline-flex items-center justify-between px-1 py-2 text-left transition duration-200 ease-in-out hover:bg-gray-200 hover:border hover:border-gray-300 hover:rounded-md' onClick={(event) => handleDeleteFollowerClick(event, index, e.id_card, e.contact_id)}>
-                    <p>削除</p>
-                    <img src='https://cdn-icons-png.flaticon.com/64/484/484662.png' className='w-3' />
-                  </div>
-                </div>
-              )}
-
-              {isNewGroupVisible[index] && (
-
-                <ul className='absolute z-10 inline-flex flex-col w-40 h-auto px-2 py-1 text-xs bg-gray-100 border border-gray-300 rounded-md left-5 justify-evenly top-16 drop-shadow-md'>
-                  <br />
-                  {group.map((event, i) => (
-                    <li className='inline-flex items-center justify-between px-1 py-2 text-left transition duration-200 ease-in-out hover:bg-gray-200 hover:border hover:border-gray-300 hover:rounded-md'
-                      // onChange={(evt) => checkIdCard(evt, index, event.group_id, e.contact_id)}
-                      key={i}
-                    >
-                      <input type='checkbox' className='w-3 mr-3'
-                        // checked={selectedItems[index].group_id == event.group_id && selectedItems[index].id_card == e.contact_id}
-                        // checked={event.group_id === selectedItems[i]}
-                        // {for(let n = 0; selectedItems.length; n++) {
-                        //   if(event.group_id == selectedItems[n]) {
-                        //     checked=true
-                        //   } else if(n = selectedItems.length - 1 ) {
-                        //     checked=false
-                        //   }
-                        // }}
-                        checked={selectedItems.includes(event.group_id)}
-                        onChange={(ev) => handleCheckboxChange(ev, event.group_id, e.contact_id)} />
-                      <h4 className='max-w-full overflow-hidden'>{event.group_name}</h4>
-                    </li>
-                  ))}
-                  <li className='inline-flex items-center justify-between px-1 py-2 text-left transition duration-200 ease-in-out hover:bg-gray-200 hover:border hover:border-gray-300 hover:rounded-md' onClick={(event) => handlePlusGroup(event, index)}>
-                    <img src='https://cdn-icons-png.flaticon.com/64/446/446136.png' className='w-3' />
-                    <h4>新規グループを作成</h4>
-                  </li>
-                  <form onSubmit={(e) => handleCreateGroup(e, index)}>
-                    {showInput[index] && (
-                      <li className='inline-flex items-center justify-between px-1 py-2 text-left transition duration-200 ease-in-out border-b border-solid hover:bg-gray-200 hover:border hover:border-gray-300 hover:rounded-md border-b-gray-300'>
-                        <input className='w-full h-full bg-transparent outline-none'
-                          placeholder='グループの名前'
-                          type='text'
-                          id='group_name'
-                          value={group_name}
-                          onChange={(e) => setGroupName(e.target.value)}
-                          required />
-                      </li>
-                    )}
-                    <br />
-                    {showButtom[index] && (
-                      <button className='w-full mb-1 text-right cursor-pointer hover:text-[#36735B] hover:font-bold' id='btt' type='submit'>編集</button>
-                    )}
-                  </form>
-                </ul>
-
-              )}
             </div>
-
-            {/* set thoi gian */}
-            <div className='absolute bottom-0 text-xs text-gray-400 right-1'>{e.contact_created_at}</div>
           </div>
-        ))}
+        </div>
+        <div className="card-body">
+          <div id="table-followers-list-all" className="table-card gridjs-border-none">
+            <div className="row">{renderFollowers(data)}</div>
+          </div>
+          <div className="d-flex justify-content-center">
+            <button
+              className="btn btn-secondary me-2"
+              onClick={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <span>Page {currentPage} of {totalPages}</span>
+            <button
+              className="btn btn-secondary ms-2"
+              onClick={() => setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className='fixed bottom-0 flex items-center justify-center left-0 w-full h-auto p-0.5 bg-gray-300 rounded-md'>
-        <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1} className='hover:text-[#36735B] hover:cursor-pointer'>
-          前のページ
-        </button>
-        <span className='mx-4'>{currentPage}/{totalPages}</span>
-        <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages} className='hover:text-[#36735B] hover:cursor-pointer'>
-          次のページ
-        </button>
-      </div>
-
-
     </div>
-
-
   );
 };
 
