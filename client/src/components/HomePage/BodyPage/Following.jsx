@@ -129,9 +129,9 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const responseData = await response.json();
       console.log('delete', responseData);
 
-      const res = await fetch(`${API_BASE_URL}/api/manage/${contact_id}`, {
-        method: 'DELETE',
-      });
+      // const res = await fetch(`${API_BASE_URL}/api/manage/${contact_id}`, {
+      //   method: 'DELETE',
+      // });
       //const resData = await res.json();
       console.log('delete', responseData);
 
@@ -244,9 +244,9 @@ const Following = ({ searchTerm, onSearchChange }) => {
       const responseData = await response.json();
       setGroup(responseData.data);
 
-      const user = await http.get(
-        `${API_BASE_URL}/api/user/${id_card}`
-      );
+      // const user = await http.get(
+      //   `${API_BASE_URL}/api/user/${id_card}`
+      // );
       //const current = localStorage.setItem("currentUser", JSON.stringify(user)); // update localstorage
       console.log("Added Group Successful");
       setGroupName('');
