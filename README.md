@@ -36,14 +36,14 @@
 ## Accounts
 **Example User 1**
 - Email: `nguyenthithutrang0122@gmail.com`
-- Password: `chan`
+- Password: `***`
 
 **Example User 2**
 - Email: `mei@gmail.com`
 - Password: `meimei`
 
 **Admin**
-- Email: `mei@gmail.com`
+- Email: `admin@gmail.com`
 - Password: `meimei`
 
 ## Running on AWS
