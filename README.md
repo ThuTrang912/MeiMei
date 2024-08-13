@@ -44,7 +44,7 @@
 
 **Admin**
 - Email: `admin@gmail.com`
-- Password: `meimei`
+- Password: `***`
 
 ## Running on AWS
 The application is deployed on AWS. Try it out at:  
