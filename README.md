@@ -28,7 +28,7 @@
    - Run `php artisan storage:link`
    - Run `php artisan serve --port=8000 --host=0.0.0.0`
 
-## Client Setup
+## Client Setup  
 1. In the `client` directory:
    - Run `npm i`
    - Run `npm start`
@@ -59,3 +59,9 @@ The application features the following UI:
 
 **Admin Side**  
 ![Admin Side](https://github.com/user-attachments/assets/a73ec86d-17cd-41ec-9c04-21d81617ea7b)
+
+## Demo Video
+https://github.com/user-attachments/assets/87214c87-2848-4559-a67b-494de2ab4722
+
+
+
